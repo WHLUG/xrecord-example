@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     EventMonitor eventMonitor;
     QObject::connect(
         &eventMonitor, 
-        &EventMonitor::buttonedPress, 
+        &EventMonitor::buttonPress, 
         label,
         [=] (int x, int y) {
             label->setText(QString("Button press (%1, %2)").arg(x).arg(y));
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
         Qt::QueuedConnection);
     QObject::connect(
         &eventMonitor, 
-        &EventMonitor::buttonedDrag, 
+        &EventMonitor::buttonDrag, 
         label,
         [=] (int x, int y) {
             label->setText(QString("Button drag (%1, %2)").arg(x).arg(y));
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         Qt::QueuedConnection);
     QObject::connect(
         &eventMonitor, 
-        &EventMonitor::buttonedRelease, 
+        &EventMonitor::buttonRelease, 
         label,
         [=] (int x, int y) {
             label->setText(QString("Button release (%1, %2)").arg(x).arg(y));

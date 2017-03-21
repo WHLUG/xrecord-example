@@ -51,7 +51,7 @@ void EventMonitor::run()
     range->device_events.last  = MotionNotify;
 
     // And create the XRECORD context.
-    XRecordContext context = XRecordCreateContext (display, 0, &clients, 1, &range, 1);
+    XRecordContext context = XRecordCreateContext(display, 0, &clients, 1, &range, 1);
     if (context == 0) {
         fprintf(stderr, "XRecordCreateContext failed\n");
         return;
@@ -85,20 +85,26 @@ void EventMonitor::handleRecordEvent(XRecordInterceptData* data)
         case ButtonPress:
             if (filterWheelEvent(event->u.u.detail)) {
                 isPress = true;
-                emit buttonedPress(event->u.keyButtonPointer.rootX, event->u.keyButtonPointer.rootY);
+                emit buttonPress(
+                    event->u.keyButtonPointer.rootX, 
+                    event->u.keyButtonPointer.rootY);
             }
             
             break;
         case MotionNotify:
             if (isPress) {
-                emit buttonedDrag(event->u.keyButtonPointer.rootX, event->u.keyButtonPointer.rootY);
+                emit buttonDrag(
+                    event->u.keyButtonPointer.rootX, 
+                    event->u.keyButtonPointer.rootY);
             }
             
             break;
         case ButtonRelease:
             if (filterWheelEvent(event->u.u.detail)) {
                 isPress = false;
-                emit buttonedRelease(event->u.keyButtonPointer.rootX, event->u.keyButtonPointer.rootY);
+                emit buttonRelease(
+                    event->u.keyButtonPointer.rootX, 
+                    event->u.keyButtonPointer.rootY);
             }
             
             break;

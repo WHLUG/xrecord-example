@@ -47,9 +47,9 @@ public:
     EventMonitor(QObject *parent = 0);
     
 signals:
-    void buttonedPress(int x, int y);
-    void buttonedDrag(int x, int y);
-    void buttonedRelease(int x, int y);
+    void buttonPress(int x, int y);
+    void buttonDrag(int x, int y);
+    void buttonRelease(int x, int y);
     void keyPress(int code);
     void keyRelease(int code);
 
